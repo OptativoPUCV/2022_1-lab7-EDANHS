@@ -47,7 +47,7 @@ void heap_push(Heap* pq, void* data, int priority){
    int posDown = pq->size;
    int posUp = (posDown-1)/2;
    heapElem *Aux = (heapElem*) malloc(sizeof(heapElem));
-   while(posUp>0){
+   while(posDown>0){
       printfArray(pq->heapArray,pq->size);
       if(pq->heapArray[posUp].priority < pq->heapArray[posDown].priority){
          *Aux = pq->heapArray[posDown];
