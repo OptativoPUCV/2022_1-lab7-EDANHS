@@ -23,8 +23,13 @@ void* heap_top(Heap* pq){
    return data;
 }
 
-void printfArray(void *array,int capacity){
-
+void printfArray(heapElem*array,int capacity){
+   int i; 
+   printf("[ ");
+   for(i = 0 ; i < capacity ; i++){
+      printf("%i ",array[i].priority);
+   } 
+   printf("]\n");
 }
 
 
