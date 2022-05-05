@@ -23,6 +23,9 @@ void* heap_top(Heap* pq){
    return data;
 }
 
+void printfArray(void *array,int capacity){
+
+}
 
 
 void heap_push(Heap* pq, void* data, int priority){
@@ -35,11 +38,12 @@ void heap_push(Heap* pq, void* data, int priority){
    pq->heapArray[pq->size].data = data;
    pq->heapArray[pq->size].priority = priority;
 
-   pq->size++;
+   
    int posDown = pq->size;
    int posUp = (posDown-1)/2;
    heapElem *Aux = (heapElem*) malloc(sizeof(heapElem));
    while(posUp>0){
+      printfArray(pq->heapArray,pq->size);
       if(pq->heapArray[posUp].priority < pq->heapArray[posDown].priority){
          *Aux = pq->heapArray[posDown];
          pq->heapArray[posDown] = pq->heapArray[posUp];
@@ -48,6 +52,7 @@ void heap_push(Heap* pq, void* data, int priority){
       posDown = posUp;
       posUp = (posDown-1)/2;
    }
+   pq->size++;
 }
 
 
