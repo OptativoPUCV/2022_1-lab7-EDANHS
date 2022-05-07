@@ -34,16 +34,18 @@ void printfArray(heapElem*array,int capacity){
 
 
 void heap_push(Heap* pq, void* data, int priority){
+   //confirmo si es necesario aumentar el tamaño;
    if(pq->size == pq->capac){
       pq->capac = (pq->capac*2) + 1;
       pq->heapArray = (heapElem*)realloc(pq->heapArray,sizeof(heapElem)*pq->capac);
       if(pq->heapArray == NULL) exit(EXIT_FAILURE);
    }
    
+   //inserto la en la ultima casilla;
    pq->heapArray[pq->size].data = data;
    pq->heapArray[pq->size].priority = priority;
 
-   
+   //recorrido y confirmación si es necesario intercambio
    int posDown = pq->size;
    int posUp = (posDown-1)/2;
    heapElem *Aux = (heapElem*) malloc(sizeof(heapElem));
@@ -62,7 +64,33 @@ void heap_push(Heap* pq, void* data, int priority){
 
 
 void heap_pop(Heap* pq){
+   if(pq->size == 0) return;
 
+   pq->size--;
+   //intercambio primer y ultimo nodo
+   heapElem *Aux = &pq->heapArray[0];
+   pq->heapArray[0] = pq->heapArray[pq->size];
+   pq->heapArray[pq->size] = *Aux;
+
+   //Elimino el ultimo
+   free(pq->heapArray[pq->size].data);
+   pq->heapArray[pq->size].priority = -1;
+
+   //hago un ciclo para intercambiar las posiciones de las prioridades 
+   int posAux = 0;
+   while(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+1].priority &&
+      pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority){
+      
+      *Aux = pq->heapArray[posAux];
+      if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+1].priority){
+         pq->heapArray[posAux] = pq->heapArray[(2*posAux)+1];
+         pq->heapArray[(2*posAux)+1] = *Aux;
+      }
+      if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority){
+         pq->heapArray[posAux] = pq->heapArray[(2*posAux)+2];
+         pq->heapArray[(2*posAux)+2] = *Aux;
+      }
+   }
 }
 
 Heap* createHeap(){
