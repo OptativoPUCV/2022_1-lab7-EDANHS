@@ -62,6 +62,11 @@ void heap_push(Heap* pq, void* data, int priority){
    pq->size++;
 }
 
+void change_pos(heapElem *a1,int pos,int dir){
+   heapElem *aux = &a1[pos];
+   a1[pos] = a1[(2*pos)+dir];
+   a1[(2*pos)+dir] = *aux;
+}
 
 void heap_pop(Heap* pq){
    if(pq->size == 0) return;
@@ -89,13 +94,18 @@ void heap_pop(Heap* pq){
       printfArray(pq->heapArray,pq->size);
 
       if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+1].priority){
-         pq->heapArray[posAux] = pq->heapArray[(2*posAux)+1];
-         pq->heapArray[(2*posAux)+1] = *Aux;
+         change_pos(pq->heapArray,posAux,1);
+            if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority){
+            change_pos(pq->heapArray,posAux,2);
+         }
          posAux = (2*posAux)+1;
       }
       if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority){
-         pq->heapArray[posAux] = pq->heapArray[(2*posAux)+2];
-         pq->heapArray[(2*posAux)+2] = *Aux;
+         change_pos(pq->heapArray,posAux,2);
+         
+         if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+1].priority){
+            change_pos(pq->heapArray,posAux,1);
+         }
          posAux = (2*posAux)+2;
       }
    }
