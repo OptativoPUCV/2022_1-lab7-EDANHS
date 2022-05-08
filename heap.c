@@ -62,16 +62,69 @@ void heap_push(Heap* pq, void* data, int priority){
    pq->size++;
 }
 
-void change_pos(heapElem *a1,int pos,int dir){
-   heapElem *aux = &a1[pos];
-   a1[pos] = a1[(2*pos)+dir];
-   a1[(2*pos)+dir] = *aux;
+void change_pos(heapElem *Array,int pos){
+   heapElem *aux = (heapElem*)malloc(sizeof(heapElem)*3);
+   int i,k;
+   //guardo en un arreglo
+   for(i = 0;i < 3;i++){
+      aux[i] = Array[(2*pos)+i];
+   }
+   heapElem max;
+   //ordeno mayor a menor
+   for(i = 0;i < 3;i++){
+      printf("Impresion en ordenamiento...\n");
+      printfArray(aux,3);
+      for(k = i;k < 2;k++){
+         if(aux[k].priority < aux[k+1].priority){
+            max = aux[k];
+            aux[k] = aux[k+1];
+            aux[k+1] = max;
+         }
+      }
+   }
+   //micro intercambio
+   max = aux[1];
+   aux[1] = aux[2];
+   aux[2] = aux[1];
+
+   //asignaicon
+   for(i = 0 ; i < 3 ; i++){
+      Array[(2*pos)+i] = aux[i];
+   }
+
+
+
+
 }
 
 void heap_pop(Heap* pq){
 
-   printf("impimiendo arreglo completo...\n");
-   printfArray(pq->heapArray,pq->capac);
+   //printf("impimiendo arreglo completo...\n");
+   //printfArray(pq->heapArray,pq->capac);
+
+   if(pq->size == 0) return;
+   printf("Imprimiendo antes de eliminar...\n");
+   printfArray(pq->heapArray,pq->size);
+   pq->size--;
+   //intercambio primer y ultimo nodo
+   heapElem *Aux = &pq->heapArray[0];
+   pq->heapArray[0] = pq->heapArray[pq->size];
+   pq->heapArray[pq->size] = *Aux;
+   printf("Imprimiendo luego de la eliminacion...\n");
+   printfArray(pq->heapArray,pq->size);
+
+   //Elimino el ultimo
+   free(pq->heapArray[pq->size].data);
+   pq->heapArray[pq->size].priority = 0;
+
+   //hago un ciclo para intercambiar las posiciones de las prioridades 
+   printf("Imprimiendo en ciclo...\n");
+   int i;
+   for(i = 0 ; i < pq->size ; i++){
+      if(pq->heapArray[(2*i)+1].priority == 0 || pq->heapArray[(2*i)+2].priority == 0) break;
+      change_pos(pq->heapArray,i);
+   }
+
    
 }
 
