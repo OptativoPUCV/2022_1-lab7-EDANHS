@@ -82,27 +82,27 @@ void heap_pop(Heap* pq){
 
    //Elimino el ultimo
    free(pq->heapArray[pq->size].data);
-   pq->heapArray[pq->size].priority = -1;
+   pq->heapArray[pq->size].priority = 0;
 
    //hago un ciclo para intercambiar las posiciones de las prioridades 
    printf("Imprimiendo en ciclo...\n");
    int posAux = 0;
-   while(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+1].priority &&
-      pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority){
-      
+   while(1){
+      if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+1].priority &&
+         pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority) break;
+
       *Aux = pq->heapArray[posAux];
       printfArray(pq->heapArray,pq->size);
 
       if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+1].priority){
          change_pos(pq->heapArray,posAux,1);
-            if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority){
+         if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority){
             change_pos(pq->heapArray,posAux,2);
          }
          posAux = (2*posAux)+1;
       }
       if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority){
          change_pos(pq->heapArray,posAux,2);
-         
          if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+1].priority){
             change_pos(pq->heapArray,posAux,1);
          }
