@@ -82,7 +82,7 @@ void change_pos(heapElem *Array,int pos){
       }
    }
    //micro intercambio
-   if(aux[1].priority < aux[2].priority){
+   if(aux[1].priority > aux[2].priority){
       max = aux[1];
       aux[1] = aux[2];
       aux[2] = aux[1];
