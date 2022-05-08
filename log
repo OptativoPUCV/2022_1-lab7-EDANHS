@@ -168,3 +168,13 @@ Sun May  8 10:41:53 HSP 2022:
  tests:  7|1
 total_score: 50/70
 0e12518
+Sun May  8 10:43:01 HSP 2022: 
+ heap.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+In file included from test.c:4:0:
+heap.c: In function 'heap_pop':
+heap.c:117:28: error: incompatible types when assigning to type 'heapElem {aka struct nodo}' from type 'void *'
+    pq->heapArray[pq->size] = NULL;
+                            ^
+Compilation failed
+71f1af2
