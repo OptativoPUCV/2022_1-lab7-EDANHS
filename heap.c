@@ -50,7 +50,6 @@ void heap_push(Heap* pq, void* data, int priority){
    int posUp = (posDown-1)/2;
    heapElem *Aux = (heapElem*) malloc(sizeof(heapElem));
    while(posDown>0){
-      printfArray(pq->heapArray,pq->size);
       if(pq->heapArray[posUp].priority < pq->heapArray[posDown].priority){
          *Aux = pq->heapArray[posDown];
          pq->heapArray[posDown] = pq->heapArray[posUp];
@@ -71,10 +70,10 @@ void change_pos(heapElem *Array,int pos){
    }
    heapElem max;
    //ordeno mayor a menor
-   for(i = 0;i < 3;i++){
+   for(i = 0;i < 2;i++){
       printf("Impresion en ordenamiento...\n");
       printfArray(aux,3);
-      for(k = i;k < 2;k++){
+      for(k = i;k < 3;k++){
          if(aux[k].priority < aux[k+1].priority){
             max = aux[k];
             aux[k] = aux[k+1];
