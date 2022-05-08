@@ -114,7 +114,7 @@ void heap_pop(Heap* pq){
 
    //Elimino el ultimo
    free(pq->heapArray[pq->size].data);
-   pq->heapArray[pq->size] = NULL;
+   pq->heapArray[pq->size].data = NULL;
    pq->heapArray[pq->size].priority = 0;
 
    //hago un ciclo para intercambiar las posiciones de las prioridades 

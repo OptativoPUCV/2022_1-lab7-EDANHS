@@ -178,3 +178,9 @@ heap.c:117:28: error: incompatible types when assigning to type 'heapElem {aka s
                             ^
 Compilation failed
 71f1af2
+Sun May  8 10:43:13 HSP 2022: 
+ heap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  7|1
+total_score: 50/70
+ec6c2a3
