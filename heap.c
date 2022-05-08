@@ -104,7 +104,6 @@ void heap_pop(Heap* pq){
    if(pq->size == 0) return;
    printf("Imprimiendo antes de eliminar...\n");
    printfArray(pq->heapArray,pq->size);
-   pq->size--;
    //intercambio primer y ultimo nodo
    heapElem *Aux = &pq->heapArray[0];
    pq->heapArray[0] = pq->heapArray[pq->size];
