@@ -87,14 +87,16 @@ void heap_pop(Heap* pq){
       
       *Aux = pq->heapArray[posAux];
       printfArray(pq->heapArray,pq->size);
-      
+
       if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+1].priority){
          pq->heapArray[posAux] = pq->heapArray[(2*posAux)+1];
          pq->heapArray[(2*posAux)+1] = *Aux;
+         posAux = (2*posAux)+1;
       }
       if(pq->heapArray[posAux].priority < pq->heapArray[(2*posAux)+2].priority){
          pq->heapArray[posAux] = pq->heapArray[(2*posAux)+2];
          pq->heapArray[(2*posAux)+2] = *Aux;
+         posAux = (2*posAux)+2;
       }
    }
 }
