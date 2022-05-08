@@ -123,6 +123,7 @@ void heap_pop(Heap* pq){
       if(pq->heapArray[(2*i)+1].priority == 0 || pq->heapArray[(2*i)+2].priority == 0) break;
       change_pos(pq->heapArray,i);
    }
+   pq->size--;
 
    
 }
