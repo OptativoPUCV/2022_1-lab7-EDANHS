@@ -123,7 +123,7 @@ void heap_pop(Heap* pq){
    printf("Imprimiendo en ciclo...\n");
    int i;
    for(i = 0 ; i < pq->size ; i++){
-      if(pq->heapArray[(2*i)+1].priority == 0 || pq->heapArray[(2*i)+2].priority == 0) break;
+      if(pq->heapArray[(2*i)+1].priority == 0) break;
       change_pos(pq->heapArray,i);
    }
    printf("final...\n");
