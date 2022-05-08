@@ -70,7 +70,7 @@ void change_pos(heapElem *Array,int pos){
    }
    heapElem max;
    //ordeno mayor a menor
-   for(i = 1;i < 4;i++){
+   for(i = 1;i < 3;i++){
       for(k = 0;k < 3-i;k++){
          if(aux[k].priority < aux[k+1].priority){
             max = aux[k];
